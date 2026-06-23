@@ -35,6 +35,52 @@
   --color-gold: oklch(0.85 0.18 80);
 }
 
+/* ── Global helpers ── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.grad-text {
+  background: linear-gradient(90deg, #FFFFFF 0%, #FFB3F0 28%, #C4A0FF 58%, #7FFFFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pulse-dot {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px #5BFFB2; }
+  50% { box-shadow: 0 0 20px #5BFFB2, 0 0 40px #5BFFB244; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer-slide 2.2s linear infinite;
+}
+
+@keyframes shimmer-slide {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @layer base {
   * {
     @apply border-border box-border;
@@ -73,7 +119,7 @@
 
 /* ── Gradient text ────────────────────────────────────────────── */
 .grad-text {
-  background: linear-gradient(90deg, #fff 0%, #FFD6F7 32%, #B8A6FF 65%, #A2F4FF 100%);
+  background: linear-gradient(90deg, #FFFFFF 0%, #FFB3F0 28%, #C4A0FF 58%, #7FFFFF 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
